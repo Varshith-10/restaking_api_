@@ -29,14 +29,14 @@ This backend project fetches real Ethereum mainnet data using the stETH contract
   ⚙️ Setup Instructions
 
 1. Clone the Repository:
-   git clone https://github.com/YOUR_USERNAME/restaking-api.git
+   git clone https://github.com/Varshith-10/restaking_api_
    cd restaking-api
 
 2. Install Dependencies:
    npm install
 
 3. Setup Environment Variables in `.env`:
-   ALCHEMY_RPC_URL=https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY
+   ALCHEMY_RPC_URL=https://eth-mainnet.g.alchemy.com/v2/r_LhEaIcj686ehoDCT1ZGcWsafmohRAx
    MONGO_URI=mongodb://localhost:27017/restaking
 
 4. Start MongoDB:
