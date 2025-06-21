@@ -1,114 +1,46 @@
-# restaking_api
+🔁 Project Overview
+This backend project fetches real Ethereum mainnet data using the stETH contract from Lido, stores it in MongoDB, and exposes it through RESTful APIs. It demonstrates end-to-end integration of blockchain smart contract reads with a persistent backend system.
+📦 Features
 
-REST API for displaying EigenLayer restaking info including user activity, validator metadata, and rewards. Uses mock data and is ready for future integration with The Graph or EigenLayer subgraphs.
+- Connects to Ethereum mainnet using ethers.js and Alchemy
+- Reads real wallet balances from the stETH contract
+- Stores the data in MongoDB
+- Exposes RESTful endpoints for retrieval and testing via Postman
+  🛠️ Tech Stack
+- Node.js + Express – API layer
+- MongoDB + Mongoose – Data storage
+- ethers.js – Ethereum blockchain interaction
+- Alchemy – Ethereum mainnet RPC provider
+- Postman – API testing tool
+  📁 Folder Structure
+  restaking-api/
+  ├── src/
+  │ ├── models/ # User schema
+  │ ├── routes/ # REST API routes
+  │ ├── services/ # Blockchain fetchers
+  │ ├── db.js # MongoDB connection logic
+  │ └── index.js # Main server entry point
+  ├── .env # Environment config
+  ├── package.json # Project metadata
+  └── README.md
+  🔌 API Endpoints
+  GET /fetch-all → Fetches stETH balances from blockchain and stores in DB
+  GET /restakers → Returns all stored restakers and balances
+  ⚙️ Setup Instructions
 
----
+1. Clone the Repository:
+   git clone https://github.com/YOUR_USERNAME/restaking-api.git
+   cd restaking-api
 
-## 📦 Features
+2. Install Dependencies:
+   npm install
 
-- Fetches and stores:
-  - Users who restaked stETH
-  - Validators with total delegated stake, slashing history, and status
-  - Reward breakdowns per wallet address
-- Built using RESTful architecture with clean modular code
-- MongoDB for persistent storage
-- Ready for integration with The Graph or EigenLayer subgraphs when available
+3. Setup Environment Variables in `.env`:
+   ALCHEMY_RPC_URL=https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY
+   MONGO_URI=mongodb://localhost:27017/restaking
 
----
+4. Start MongoDB:
+   mongod
 
-## 🛠️ Tech Stack
-
-- **Node.js** + **Express** – for the API layer
-- **MongoDB** – for storing user, validator, and reward data
-- **graphql-request** – intended for live subgraph querying (mocked for now)
-- **Postman** – for testing API endpoints
-
----
-
-## 📁 Folder Structure
-
-restaking-api/
-├── src/
-│ ├── controllers/ # (optional for route logic separation)
-│ ├── models/ # Mongoose schemas for User, Validator, Reward
-│ ├── routes/ # API route handlers
-│ ├── services/ # Data fetchers (mock for now)
-│ ├── db.js # MongoDB connection
-│ └── index.js # App entry point
-├── .env # Environment variables (Mongo URI, PORT)
-├── package.json
-└── README.md
-
----
-
-## 🔌 API Endpoints
-
-| Method | Endpoint            | Description                                     |
-| ------ | ------------------- | ----------------------------------------------- |
-| GET    | `/fetch-all`        | (Dev) Loads mock restakers, validators, rewards |
-| GET    | `/restakers`        | Returns list of restakers + validator info      |
-| GET    | `/validators`       | Returns validator metadata                      |
-| GET    | `/rewards/:address` | Returns reward details for a specific user      |
-
----
-
-## ⚙️ Setup Instructions
-
-### 1. Clone the Repository
-
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-cd restaking-api
-
-### 2. Install Dependencies
-
-npm install
-
-### 3. Configure .env
-
-Create a .env file in the root:
-
-ini
-PORT=5000
-MONGO_URI=mongodb://localhost:27017/restaking
-
-### 4. Start MongoDB
-
-Make sure MongoDB is running locally:
-mongod
-
-### 5. Start the Server
-
-npm start
-Demo Instructions
-Go to: http://localhost:5000/fetch-all
-→ Loads mock data into MongoDB
-
-Use Postman or browser to test:
-
-GET http://localhost:5000/restakers
-
-GET http://localhost:5000/validators
-
-GET http://localhost:5000/rewards/0xUser1
-
-Check MongoDB (Compass or CLI) to see stored collections:
-
-users
-
-validators
-
-rewards
-
-Assumptions & Notes
-Real EigenLayer data isn't public yet, so this demo uses mock restaking data.
-
-The structure of GraphQL queries and models assumes a future real subgraph can easily plug into this backend.
-
-The API logic is modular, so you can replace mock services with real subgraph fetchers later.
-
-Demo Video
-
-Author
-Your Name
-Email: your.email@example.com
-GitHub: @yourusername
+5. Run the Server:
+   npm start
